@@ -6,6 +6,7 @@ class PostsController extends AppController{
     public function index(){
         $a = $this->Post->find("all");
         $this->set("posts",$a);
+//        $this->render("add");
 //        $this->flash("请跳转",array("action"=>"add"));
 //        pr($a);
 //        $a = $this->request->here;
@@ -31,6 +32,12 @@ class PostsController extends AppController{
     public function add(){
         if($this->request->is("post")){
             $this->Post->create();
+            $title = $this->data['Post']['title'];
+            $valid_title = $this->Post ->find("all",array('conditions'=>array("title = '".$this->data['Post']['title']."'")));
+            if($valid_title){
+                $this->Session->setFlash("your title is existence!");
+                return;
+            }
             if($this->Post->save($this->request->data)){
                 $this->Session->setFlash("your post has been saved.");
                 $this->redirect(array("action"=>"index"));

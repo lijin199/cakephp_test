@@ -1,10 +1,11 @@
 <?php
 class Post extends AppModel {
+//    var $name = "Post";
     public $validate = array(
 //        'title' => array(
 //            'rule' => 'email',
-//            'required' => true,
 //            'message'  => '只接受字母和数字'
+//            'required' => true,
 //        ),
 //        'body' => array(
 //            'rule' => 'notEmpty'
